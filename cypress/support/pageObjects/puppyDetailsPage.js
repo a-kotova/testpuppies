@@ -31,6 +31,9 @@ export class PuppyDetailsPage {
     cy.visit(`/puppies/${targetPuppy.id}`);
   }
 
+  // method verifies that puppy details are visible and correct
+  // depending on granularity of checks on the project, we might check only
+  // presence of the elements or the content itself as well
   verifyPuppyDetails(targetPuppy) {
     this.puppyImage.should('be.visible');
     this.puppyName
@@ -41,6 +44,7 @@ export class PuppyDetailsPage {
       .should('contain', targetPuppy.breed);
     this.puppyDescription.should('be.visible');
     this.puppyDescription.invoke('text').then((text) => {
+      // formatString is a custom method that trims string, removes carriage returns and double spaces
       cy.formatString(text).should('contain', targetPuppy.description);
     });
     this.adoptionFeeByline.should('be.visible');
@@ -48,6 +52,7 @@ export class PuppyDetailsPage {
 
   verifyAdoptionFeeIsCorrect(expectedFee) {
     this.adoptionFeeByline.invoke('text').then((text) => {
+      // getPriceValue is a custom method that uses regexp to get numeric price value
       cy.getPriceValue(text).should('equal', expectedFee);
     });
   }

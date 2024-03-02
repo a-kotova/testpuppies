@@ -26,6 +26,7 @@ export class CartPage {
 
   verifyTotalPriceIsCorrect(expectedPrice) {
     this.totalPrice.invoke('text').then((text) => {
+      // getPriceValue is a custom method that uses regexp to get numeric price value
       cy.getPriceValue(text).should('equal', expectedPrice);
     });
   }
