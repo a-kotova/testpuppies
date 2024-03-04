@@ -1,6 +1,8 @@
 # testpuppies
 This is a test automation framework that contains some test scenarios for puppy adoption web application.
 
+Tech stack: JS + Cypress.
+
 ## Prerequisites
 Node.js 18.x and above
 
